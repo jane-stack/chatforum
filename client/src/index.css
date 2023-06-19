@@ -16,3 +16,29 @@ code {
 .errors {
   color: red;
 }
+
+/* handles the navbar */
+.navbar {
+  background-color: #282c34;
+  color: white;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+/* handles the size of the ChatSpace in Navbar */
+.nav-title {
+  font-size: calc(10px + 2vmin);
+}
+
+/* handles the links in Navbar */
+.nav-link {
+  display: inline-block;
+  width: auto;
+  padding: 20px;
+  margin: 0 6px 6px;
+  background: none;
+  text-decoration: none;
+  color: white;
+}
