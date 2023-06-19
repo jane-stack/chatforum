@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
         if @chat.save
             render json: @chat, status: 201
         else
-            render json: { errors: @chats.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: @chat.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
