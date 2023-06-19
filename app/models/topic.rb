@@ -3,5 +3,5 @@ class Topic < ApplicationRecord
     has_many :chats, dependent: :destroy
     has_many :users, through: :chats
 
-    validates :name, presence: true
+    validates :name :description, presence: true
 end
