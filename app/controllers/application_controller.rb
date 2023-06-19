@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
     end
 
     def authorize
-        render json: { errors: ["Log in to proceed"] }, status: :unauthorized
+        render json: { errors: ["You must be logged in"] }, status: :unauthorized unless logged_in?
     end
 
     def authorize_user_resource(user_id)

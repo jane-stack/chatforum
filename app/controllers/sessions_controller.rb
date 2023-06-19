@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by_username(params[:username])
         if user&.authenticate(params[:password])
-            session[:user_id] = user.user_id
+            session[:user_id] = user.id
             render json: user
         else
             render json: { errors: ["Username or Password didn't match"] }, status: :unprocessable_entity
@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
     # DELETE /logout
     def destroy
         session.delete :user_id
+        render json: { message: "You've Logged Out" }
     end
 
 end

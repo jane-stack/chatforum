@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :chatrooms
   resources :topics
+  resources :users
 
   # Users
   post '/signup', to: 'users#create'
