@@ -42,3 +42,11 @@ code {
   text-decoration: none;
   color: white;
 }
+
+/* handles login/logout forms */
+.form {
+  padding: 150px;
+  text-align: right;
+  padding-bottom: 100px;
+  background-color: white;
+}

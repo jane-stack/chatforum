@@ -1,34 +1,33 @@
 import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
 import { ErrorsContext } from "../context/ErrorsContext";
+import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function LoginForm() {
-    const { login } = useContext(UserContext);
+function SignupForm() {
     const { setErrors } = useContext(ErrorsContext);
+    const { signup } = useContext(UserContext);
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const navigate = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/login', {
+        fetch('/signup', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({username, password})
         })
         .then(resp => resp.json())
         .then(data => {
             if (data.errors) {
-                setErrors(data.errors);
-                setUsername("");
-                setPassword("");
+                setErrors(data.errors)
+                setUsername("")
+                setPassword("")
             } else {
-                login(data);
-                setErrors([]);
-                navigate.push("/")
+                signup(data)
+                navigate.push('/')
             }
         })
     }
@@ -36,7 +35,7 @@ function LoginForm() {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <h3>Login to BlogSpace</h3>
+            <h3>Create an Account with BlogSpace</h3>
             <div>
             Username &nbsp;
             <input
@@ -59,10 +58,10 @@ function LoginForm() {
             required={true}
             />
             </div>
-            <button type="submit">Log Me In</button>
+            <button type="submit">Sign me up!</button>
             <Errors />
         </form>
     )
 }
 
-export default LoginForm;
+export default SignupForm;

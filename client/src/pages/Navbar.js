@@ -6,6 +6,7 @@ function Navbar() {
     const { logout, loggedIn } = useContext(UserContext);
     const navigate = useHistory();
 
+    // handles the logout button
     const logoutUser = () => {
         fetch('/logout', {
             method: "DELETE"
@@ -18,6 +19,7 @@ function Navbar() {
     const userIn = () => {
         return (
             <>
+            <NavLink to="/" className="nav-link">Topic</NavLink>
             <NavLink to="#" className="nav-link" onClick={logoutUser}>Logout</NavLink>
             </>
         )
