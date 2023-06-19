@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-    before_action :find_topic, only: [:update, :destroy]
+    before_action :find_topic, only: [:show, :update, :destroy]
     skip_before_action :authorize, only: [:index]
     before_action :unprocessable_entity_if_not_found, only: [:updata, :destroy]
     before_action only: [:update, :destroy] do
@@ -13,6 +13,10 @@ class TopicsController < ApplicationController
         else
             @topic = Topic.all
         end
+        render json: @topic
+    end
+
+    def show
         render json: @topic
     end
 
