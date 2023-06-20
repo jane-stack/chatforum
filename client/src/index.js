@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ErrorsProvider } from './context/ErrorsContext'
 import { UserProvider } from './context/UserContext';
+import { TopicProvider } from './context/TopicContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ErrorsProvider>
       <UserProvider>
-        <App />
+        <TopicProvider>
+          <App />
+        </TopicProvider>
       </UserProvider>
     </ErrorsProvider>
   </React.StrictMode>

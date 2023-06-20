@@ -1,7 +1,7 @@
 function Home() {
     return (
         <div>
-            Hello From Home
+            <h3>Welcome to my ChatForum Project!</h3>
         </div>
     )
 }

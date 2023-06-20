@@ -13,7 +13,7 @@ function LoginForm() {
 
     useEffect(() => {
         if (loggedIn) {
-            navigate.push('/home')
+            navigate.push("/home")
         } else {
             return (
                 setErrors([])

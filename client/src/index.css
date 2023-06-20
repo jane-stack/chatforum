@@ -91,3 +91,23 @@ code {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+/* handles the delete button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: red;
+}
+
+/* handles the edit button */
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+/* fixing the link color */
+.title-link {
+  color: white;
+  text-decoration: none;
+}
