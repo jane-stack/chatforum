@@ -12,14 +12,15 @@ function Navbar() {
             method: "DELETE"
         })
         logout()
-        navigate.push(`/`)
     }
+    
+    navigate.push("/")
 
     // // if user is logged in:
     const userIn = () => {
         return (
             <>
-            <NavLink to="/" className="nav-link">Home</NavLink>
+            <NavLink to="/home" className="nav-link">Home</NavLink>
             <NavLink to="/topics" className="nav-link">Topic</NavLink>
             <NavLink to="/new" className="nav-link">Create Topic</NavLink>
             <NavLink to="#" className="nav-link" onClick={logoutUser}>Logout</NavLink>
@@ -30,7 +31,9 @@ function Navbar() {
     // if user is not logged in:
     const userOut = () => {
         return (
-            <></>
+            <>
+            <h4>Please Log In to use ChatSpace</h4>
+            </>
         )
     }
 

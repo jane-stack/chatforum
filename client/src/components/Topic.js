@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 
 function Topic({ topic, name, description, creator }) {
     const { user } = useContext(UserContext);
-    const { deleteTopic } = useContext(TopicContext);
+    const { deleteTopic, editTopic } = useContext(TopicContext);
     const [editMode, setEditMode] = useState(false);
     const openEditMode = () => {
         setEditMode(true);
@@ -32,7 +32,7 @@ function Topic({ topic, name, description, creator }) {
                 <button className="delete-btn" onClick={handleDelete}>Delete</button>
                 </>
             )}
-            { editMode && <TopicEdit topic={topic} /> }
+            { editMode && <TopicEdit topic={topic} editTopic={editTopic} editMode={editMode} setEditMode={setEditMode} /> }
         </div>
     )
 }

@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useState } from "react";
 
-function TopicEdit({ topic }) {
-    const { editTopic } = useContext(UserContext);
+function TopicEdit({ topic, editTopic, editMode, setEditMode }) {
     const initialState = {
         name: topic.name,
         description: topic.description
@@ -30,17 +28,17 @@ function TopicEdit({ topic }) {
         .then(resp => resp.json())
         .then(data => {
             editTopic(data)
+            setEditMode(!editMode);
         })
 
     }
 
     return (
         <form className="post-form" onSubmit={handleSubmit}>
-            <h2>Edit Your Topic</h2>
             <div className="new-post">
             Name &nbsp;
-            <input className="post-input" type="text" name="name" id="name" value={ formData.name } onChange={ handleChange }/>
-            <textarea className="post-input-description" type="textbox" name="description" id="description" value={ formData.description } onChange={ handleChange }/>
+            <input className="post-input" type="text" name="name" value={ formData.name } onChange={ handleChange }/>
+            <textarea className="post-input-description" type="textbox" name="description" value={ formData.description } onChange={ handleChange }/>
             <br />
             <button type="submit" className="contact-btn">POST</button>
             </div>
