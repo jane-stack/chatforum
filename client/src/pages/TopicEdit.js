@@ -3,12 +3,11 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 
-function TopicEdit({ topic, editTopic, isEditing, setIsEditing }) {
+function TopicEdit({ topic }) {
     const { editTopic } = useContext(UserContext);
     const [ name, setName ] = useState(topic.name);
     const [ description, setDescription ] = useState(topic.description);
     const navigate = useHistory();
-    const closeEditForm = () => setIsEditing(!isEditing);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +26,6 @@ function TopicEdit({ topic, editTopic, isEditing, setIsEditing }) {
         .then(editTopic(editedTopic))
 
         navigate.push("/topics")
-        closeEditForm();
     }
 
     return (

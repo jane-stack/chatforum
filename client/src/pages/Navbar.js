@@ -12,7 +12,7 @@ function Navbar() {
             method: "DELETE"
         })
         logout()
-        navigate.push('/home')
+        navigate.push('/')
     }
 
     // // if user is logged in:

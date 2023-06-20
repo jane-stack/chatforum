@@ -1,13 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Topic from "./Topic";
+import { TopicContext } from "../context/TopicContext";
 
-function TopicList({ topics, deleteTopic }) {
-    const [select, setSelect] = useState({});
-
-    // handle select topic
-    const onTopicClick = (selected) => {
-        setSelect(selected);
-    }
+function TopicList() {
+    const { topics } = useContext(TopicContext);
 
     // rendering topics
     const renderTopics = topics.map(topic => {
@@ -15,9 +11,6 @@ function TopicList({ topics, deleteTopic }) {
             <Topic
                 key={topic.id}
                 topic={topic}
-                deleteTopic={deleteTopic}
-                select={select}
-                onTopicClick={onTopicClick}
             />
         )
     })

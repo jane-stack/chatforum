@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
+import { TopicContext } from "../context/TopicContext";
 
-function TopicForm({ addTopic }) {
+function TopicForm() {
     const { setErrors } = useContext(ErrorsContext);
     const { loggedIn } = useContext(UserContext);
+    const { addTopic } = useContext(TopicContext);
     const initialState = {
         name: "",
         description: ""
