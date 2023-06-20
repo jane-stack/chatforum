@@ -1,14 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
 import { UserContext } from "../context/UserContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import Errors from "../errors/Errors";
 
 function SignupForm() {
     const { setErrors } = useContext(ErrorsContext);
-    const { signup } = useContext(UserContext);
+    const { signup, login, loggedIn } = useContext(UserContext);
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const navigate = useHistory();
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate.push('/home')
+        } else {
+            return (
+                setErrors([])
+            )
+        }
+    }, [ loggedIn, navigate, setErrors ])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,12 +33,13 @@ function SignupForm() {
         .then(resp => resp.json())
         .then(data => {
             if (data.errors) {
-                setErrors(data.errors)
-                setUsername("")
-                setPassword("")
+                setErrors(data.errors);
+                setUsername("");
+                setPassword("");
             } else {
-                signup(data)
-                navigate.push('/')
+                signup(data);
+                login(data);
+                navigate.push('/home');
             }
         })
     }
@@ -35,7 +47,7 @@ function SignupForm() {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <h3>Create an Account with BlogSpace</h3>
+            <h3>Create an Account with ChatSpace</h3>
             <div>
             Username &nbsp;
             <input

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom";
 
 function Navbar() {
     const { logout, loggedIn } = useContext(UserContext);
@@ -15,11 +15,13 @@ function Navbar() {
         navigate.push('/')
     }
 
-    // if user is logged in:
+    // // if user is logged in:
     const userIn = () => {
         return (
             <>
-            <NavLink to="/" className="nav-link">Topic</NavLink>
+            <NavLink to="/" className="nav-link">Home</NavLink>
+            <NavLink to="/topics" className="nav-link">Topic</NavLink>
+            <NavLink to="/new" className="nav-link">Create Topic</NavLink>
             <NavLink to="#" className="nav-link" onClick={logoutUser}>Logout</NavLink>
             </>
         )
@@ -28,9 +30,7 @@ function Navbar() {
     // if user is not logged in:
     const userOut = () => {
         return (
-            <>
-            <NavLink></NavLink>
-            </>
+            <></>
         )
     }
 

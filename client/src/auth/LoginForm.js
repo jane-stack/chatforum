@@ -1,14 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { ErrorsContext } from "../context/ErrorsContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import Errors from "../errors/Errors";
 
 function LoginForm() {
-    const { login } = useContext(UserContext);
+    const { login, loggedIn } = useContext(UserContext);
     const { setErrors } = useContext(ErrorsContext);
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const navigate = useHistory();
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate.push('/home')
+        } else {
+            return (
+                setErrors([])
+            )
+        }
+    }, [ loggedIn, navigate, setErrors ])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,12 +34,12 @@ function LoginForm() {
         .then(data => {
             if (data.errors) {
                 setErrors(data.errors);
-                setUsername("");
-                setPassword("");
             } else {
                 login(data);
                 setErrors([]);
-                navigate.push("/")
+                navigate.push("/home")
+                setUsername("");
+                setPassword("");
             }
         })
     }
@@ -36,7 +47,7 @@ function LoginForm() {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <h3>Login to BlogSpace</h3>
+            <h3>Login to ChatSpace</h3>
             <div>
             Username &nbsp;
             <input
