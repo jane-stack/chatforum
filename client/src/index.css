@@ -67,12 +67,18 @@ code {
   text-align: left;
 }
 
-.chat-box {
+.content-box {
   background-color: #434343;
   padding: 1rem;
   margin: 0.5rem;
   border-radius: 0.5rem;
   color: white;
+}
+
+.chat-box {
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
   text-align: left;
 }
 
@@ -92,6 +98,14 @@ code {
 
 .post-input-description {
   width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.chat-textarea {
+  width: 80%;
   height: 100px;
   padding: 12px 20px;
   margin: 8px 0;

@@ -18,14 +18,19 @@ function Content() {
 
     return (
         <div>
-            <h2>{ topic.name }</h2>
-            <p><strong>{ topic.creator.username }</strong></p>
-            <p>{ topic.description }</p>
-            <ChatForm />
-            <h3>Chats:</h3>
-            <div className="chat-box">
-            <ul className="ul-post">{ chats }</ul>
+            <div className="content-box">
+                <div className="new-post">
+                <h2>{ topic.name }</h2>
+                <p><strong>{ topic.creator.username }</strong></p>
+                <p>{ topic.description }</p>
+                </div>
             </div>
+            <div className="chat-box">
+            <ul className="ul-post">
+                { chats }
+            </ul>
+            </div>
+            <ChatForm />
         </div>
     )
 }

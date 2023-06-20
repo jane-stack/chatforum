@@ -21,8 +21,10 @@ function ChatForm() {
 
     return (
         <form className="post-form">
-            <input type="text" name="content" placeholder="Write your comment." />
+            <div className="new-post">
+            <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." /><br/>
             <button type="submit">SEND</button>
+            </div>
         </form>
     )
 }

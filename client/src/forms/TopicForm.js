@@ -57,8 +57,9 @@ function TopicForm() {
         <form className="post-form" onSubmit={handleSubmit}>
             <h2>Create a New Topic</h2>
             <div className="new-post">
-            Name &nbsp;
+            Topic Title &nbsp;
             <input className="post-input" type="text" name="name" id="name" value={ formData.name } onChange={ handleChange }/>
+            What is your topic of discussion? &nbsp;
             <textarea className="post-input-description" type="textbox" name="description" id="description" value={ formData.description } onChange={ handleChange }/>
             <br />
             <button type="submit" className="contact-btn">POST</button>
