@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Topic from "./Topic";
+import Topic from "../components/Topic";
 import { TopicContext } from "../context/TopicContext";
 
 function TopicList() {
@@ -21,7 +21,7 @@ function TopicList() {
 
     return (
         <div>
-            <ul>
+            <ul className="ul-post">
                 { renderTopics }
             </ul>
         </div>

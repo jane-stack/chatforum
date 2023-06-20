@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Navbar from './pages/Navbar';
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
-import TopicForm from './pages/TopicForm';
+import TopicForm from './forms/TopicForm';
 import TopicList from './pages/TopicList';
 import Content from './pages/Content';
 

@@ -67,6 +67,19 @@ code {
   text-align: left;
 }
 
+.chat-box {
+  background-color: #434343;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  text-align: left;
+}
+
+.ul-post {
+  padding: 20px;
+}
+
 /* new topic post form */
 .post-form {
   padding-top: 50px;
