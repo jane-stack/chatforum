@@ -57,6 +57,7 @@ code {
   color: white;
 }
 
+/* boxes for each topic in the topic page */
 .box {
   background-color: #434343;
   padding: 1rem;
@@ -64,4 +65,29 @@ code {
   border-radius: 0.5rem;
   color: white;
   text-align: left;
+}
+
+/* new topic post form */
+.post-form {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.new-post {
+  padding: 50px;
+}
+
+.post-input-description {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.post-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

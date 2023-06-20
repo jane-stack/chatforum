@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 
-function TopicForm() {
+function TopicForm({ addTopic }) {
     const { setErrors } = useContext(ErrorsContext);
     const { loggedIn } = useContext(UserContext);
     const initialState = {
@@ -12,6 +12,16 @@ function TopicForm() {
     }
     const [ formData, setFormData ] = useState(initialState);
     const navigate = useHistory();
+
+    useEffect(() => {
+        if (!loggedIn) {
+            navigate.push('/')
+        } else {
+            return (
+                setErrors([])
+            )
+        }
+    }, [ loggedIn, navigate, setErrors ])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,13 +33,28 @@ function TopicForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        fetch('/topics', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.errors) {
+                setErrors(data.errors)
+            } else {
+                addTopic(data)
+                navigate.push('/topics');
+            }
+        })
     }
 
     return (
         <form className="post-form" onSubmit={handleSubmit}>
             <h2>Create a New Topic</h2>
-            <div className="newpost">
+            <div className="new-post">
             Name &nbsp;
             <input className="post-input" type="text" name="name" id="name" value={ formData.name } onChange={ handleChange }/>
             <textarea className="post-input-description" type="textbox" name="description" id="description" value={ formData.description } onChange={ handleChange }/>

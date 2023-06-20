@@ -19,6 +19,11 @@ function App() {
     })
   }, [])
 
+  // handles add new topic
+  const addTopic = (topic) => {
+    setTopics([...topics, topic]);
+  }
+
   // rendering topics
   const renderTopics = topics.map(topic => {
     return (
@@ -35,9 +40,9 @@ function App() {
     <Navbar />
     <div className="App">
       <Switch>
+        <Route path="/new"><TopicForm addTopic={addTopic} /></Route>
         <Route path="/topics">{ renderTopics }</Route>
         <Route path="/"><LoginPage /></Route>
-        <Route path="/new"><TopicForm /></Route>
         <Route path="/home"><Home /></Route>
       </Switch>
     </div>
