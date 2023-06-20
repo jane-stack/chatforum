@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { TopicContext } from "../context/TopicContext";
+import TopicEdit from "./TopicEdit";
 
-function Topic({ topic }) {
+function Topic({ topic, name, description, creator }) {
     const { deleteTopic } = useContext(TopicContext);
-    const navigate = useHistory();
-
+    const [editMode, setEditMode] = useState(false);
+    const openEditMode = () => {
+        setEditMode(true);
+    }
 
     // handles delete topic click
     const handleDelete = () => {
@@ -16,20 +19,15 @@ function Topic({ topic }) {
         .then(deleteTopic(topic.id))
     }
 
-    // const editButton = () => {
-    //     return (
-    //         <topicEdit
-    //         />
-    //     )
-    // }
-
     return (
         <div className="topic-div">
             <div className="box">
-                <h3><NavLink to="/content" className="title-link">{ topic.name }</NavLink></h3>
-                <p>{ topic.description }</p>   
-                <button className="edit-btn" onClick={() => navigate.push(`/topics/${ topic.id }/edit`)}>Edit</button>
+                <h3><NavLink className="title-link" to={`/topics/${topic.id}`}>{ name }</NavLink></h3>
+                <p className="creator-text">{ creator.username }</p>
+                <p>{ description }</p>
+                <button className="edit-btn" onClick={openEditMode}>Edit</button>
                 <button className="delete-btn" onClick={handleDelete}>Delete</button>
+                { editMode && <TopicEdit topic={topic} /> }
             </div>
         </div>
     )

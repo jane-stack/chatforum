@@ -1,10 +1,10 @@
 class TopicSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :creator, :chats
+  attributes :id, :name, :description, :creator, :chats, :created_at
 
   def creator
     { 
       id: object.creator.id,
-      usernmae: object.creator.username,
+      username: object.creator.username,
     }
   end
 

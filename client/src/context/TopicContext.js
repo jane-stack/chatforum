@@ -23,10 +23,10 @@ const TopicProvider = ({ children }) => {
       }
 
     // handles editing a topic
-  const editTopic = (updatedTopic) => {
+    const editTopic = (newTopic) => {
     const updatedTopicList = topics.map(topic => {
-      if (topic.id === updatedTopic.id) {
-        return updatedTopic
+      if (newTopic.id === topic.id) {
+        return newTopic
       } else {
         return topic;
       }

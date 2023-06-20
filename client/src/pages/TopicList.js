@@ -11,6 +11,10 @@ function TopicList() {
             <Topic
                 key={topic.id}
                 topic={topic}
+                name={topic.name}
+                description={topic.description}
+                creator={topic.creator}
+                chat={topic.chat}
             />
         )
     })
