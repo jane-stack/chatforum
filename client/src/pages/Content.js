@@ -28,6 +28,9 @@ function Content() {
         setChats(updatedChatList);
     }
 
+    // handle edit comments
+    
+
     // renders the comments for each topic
     const renderChats = chats.map(chat => {
         return (
