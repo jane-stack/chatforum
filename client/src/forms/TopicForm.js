@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
 import { useHistory } from "react-router-dom";
 import { TopicContext } from "../context/TopicContext";
 import Errors from "../errors/Errors";
-import { UserContext } from "../context/UserContext";
 
 function TopicForm() {
     const { setErrors } = useContext(ErrorsContext);
-    const { loggedIn } = useContext(UserContext);
     const { addTopic } = useContext(TopicContext);
     const initialState = {
         name: "",
@@ -15,16 +13,6 @@ function TopicForm() {
     }
     const [ formData, setFormData ] = useState(initialState);
     const navigate = useHistory();
-
-    useEffect(() => {
-        if (!loggedIn) {
-            navigate.push('/')
-        } else {
-            return (
-                setErrors([])
-            )
-        }
-    }, [loggedIn, navigate, setErrors])
 
     const handleChange = (e) => {
         const { name, value } = e.target;

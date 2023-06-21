@@ -1,8 +1,9 @@
-import { useState } from "react";
-// import { ErrorsContext } from "../context/ErrorsContext";
+import { useState, useContext } from "react";
+import { ErrorsContext } from "../context/ErrorsContext";
+import Errors from "../errors/Errors";
 
 function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
-    // const { setErrors } = useContext(ErrorsContext);
+    const { setErrors } = useContext(ErrorsContext);
     const [content, setContent] = useState(chat.content);
 
     const handleSubmit = (e) => {
@@ -19,8 +20,15 @@ function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
             body: JSON.stringify(editComment)
         })
         .then(resp => resp.json())
-        .then(editChat(editComment))
-        setEditMode(!editMode)
+        .then(data => {
+            if (data.errors) {
+                setErrors(data.errors)
+            } else {
+                editChat(data)
+                setErrors([])
+                setEditMode(!editMode)
+            }
+        })
     }
 
     return (
@@ -29,6 +37,7 @@ function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
             <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." value={content} onChange={(e) => setContent(e.target.value)} /><br/>
             <button type="submit">SEND</button>
             </div>
+            <Errors />
         </form>
     )
 }

@@ -22,6 +22,8 @@ function ChatForm({ topic, addComment }) {
                 setErrors(data.errors)
             } else {
                 addComment(data)
+                setErrors([]);
+                setContent("");
             }
         })
     }

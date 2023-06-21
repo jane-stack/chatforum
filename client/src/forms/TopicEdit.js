@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ErrorsContext } from "../context/ErrorsContext";
+import Errors from "../errors/Errors";
 
 function TopicEdit({ topic, editTopic, editMode, setEditMode }) {
     const initialState = {
         name: topic.name,
         description: topic.description
     }
+    const { setErrors } = useContext(ErrorsContext);
     const [formData, setFormData] = useState(initialState);
 
     const handleChange = (e) => {
@@ -27,8 +30,13 @@ function TopicEdit({ topic, editTopic, editMode, setEditMode }) {
         })
         .then(resp => resp.json())
         .then(data => {
-            editTopic(data)
-            setEditMode(!editMode);
+            if (data.errors) {
+                setErrors(data.errors)
+            } else {
+                editTopic(data)
+                setErrors([]);
+                setEditMode(!editMode)
+            }
         })
 
     }
@@ -42,6 +50,7 @@ function TopicEdit({ topic, editTopic, editMode, setEditMode }) {
             <br />
             <button type="submit" className="contact-btn">POST</button>
             </div>
+            <Errors />
         </form>
     )
 }
