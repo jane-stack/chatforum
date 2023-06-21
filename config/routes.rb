@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index]
   resources :topics do
-    resources :chats
+    resources :chats, only: [:index, :create, :destroy]
   end
 
   # Users

@@ -1,11 +1,6 @@
 class ChatsController < ApplicationController
     before_action :find_topic
-    before_action :find_chat, only: [:update, :destroy]
     skip_before_action :authorize, only: [:index]
-    before_action :unprocessable_entity_if_not_found, only: [:update, :destroy]
-    before_action only: [:update, :destroy] do
-        authorize_user_resource(@chat.user_id)
-    end
 
     def index
         @topic = Topic.find(params[:topic_id])
@@ -29,9 +24,11 @@ class ChatsController < ApplicationController
         render json: @chat
     end
 
+    # DESTROY /topics/:id/chats/:id
     def destroy
+        @chat = @topic.chats.find(params[:id])
         @chat.destroy
-        render json: { message: "Content Destroyed" }
+        render json: @chat
     end
 
     private
@@ -42,14 +39,6 @@ class ChatsController < ApplicationController
     
     def find_topic
         @topic = Topic.find(params[:topic_id])
-    end
-
-    def find_chat
-        @chat = Chat.find_by_id(params[:id])
-    end
-
-    def unprocessable_entity_if_not_found
-        render json: { message: "Content not found" }, status: :unprocessable_entity unless @chat
     end
 
 end
