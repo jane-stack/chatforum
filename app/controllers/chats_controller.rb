@@ -20,6 +20,7 @@ class ChatsController < ApplicationController
     end
 
     def update
+        @chat = @topic.chats.find(params[:id])
         @chat.update(chat_params)
         render json: @chat
     end
