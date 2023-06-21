@@ -8,9 +8,7 @@ function Topic({ topic, name, description, creator }) {
     const { user } = useContext(UserContext);
     const { deleteTopic, editTopic } = useContext(TopicContext);
     const [editMode, setEditMode] = useState(false);
-    const openEditMode = () => {
-        setEditMode(true);
-    }
+    const openEditMode = () => setEditMode(editMode => !editMode);
 
     // handles delete topic click
     const handleDelete = () => {
