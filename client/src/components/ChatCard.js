@@ -1,16 +1,15 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-function ChatCard({ chat }) {
+function ChatCard({ chat, topic, deleteComment }) {
     const { user } = useContext(UserContext);
 
-    // const commentDeleteClick = () => {
-    //     fetch(`/topics/${topic.id}/comments/${chat.id}`, {
-    //         method: "DELETE",
-    //     })
-    //     .then(resp => resp.json())
-    //     .then(deleteComment(chat.id))
-    // }
+    const commentDeleteClick = () => {
+        fetch(`/topics/${topic.id}/comments/${chat.id}`, {
+            method: "DELETE",
+        })
+        deleteComment(chat.id)
+    }
 
     return (
         <div>
@@ -19,7 +18,7 @@ function ChatCard({ chat }) {
             </ul>
             {user && user.username === chat.user.username && (
                 <div className="chat-btn">
-                <button className="delete-btn" onClick={() => console.log("Clicked!")}>Delete</button>
+                <button className="delete-btn" onClick={commentDeleteClick}>Delete</button>
                 <button className="edit-btn" onClick={() => console.log("CLICKED")}>Edit</button>
                 </div>
             )}

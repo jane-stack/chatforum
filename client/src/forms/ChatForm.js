@@ -1,13 +1,8 @@
 import { useContext, useState } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
-// import { TopicContext } from "../context/TopicContext";
-// import { useParams } from "react-router-dom";
 
 function ChatForm({ topic, addComment }) {
     const { setErrors } = useContext(ErrorsContext);
-    // const { topics } = useContext(TopicContext);
-    // const id = parseInt(useParams().id);
-    // const topic = topics.find(topic => topic.id === id);
     const [content, setContent] = useState("");
 
     const handleSubmit = (e) => {

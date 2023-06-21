@@ -16,16 +16,6 @@ function Content() {
         .then(resp => resp.json())
         .then(data => setChats(data))
     }, [topic.id])
-
-    // renders the comments for each topic
-    const renderChats = chats.map(chat => {
-        return (
-            <ChatCard
-                key={chat.id}
-                chat={chat}
-            />
-        )
-    })
     
     // handle add new comments into chats
     const addComment = (newComment) => {
@@ -33,13 +23,23 @@ function Content() {
     }
     
     // handle delete comments
-    // const deleteComment = (id) => {
-    //     const updatedCommentList = comments.filter(comment => comment.id !== id);
-    //     setComments(updatedCommentList);
-    // }
+    const deleteComment = (id) => {
+        const updatedChatList = chats.filter(chat => chat.id !== id);
+        setChats(updatedChatList);
+    }
+
+    // renders the comments for each topic
+    const renderChats = chats.map(chat => {
+        return (
+            <ChatCard
+                key={chat.id}
+                chat={chat}
+                topic={topic}
+                deleteComment={deleteComment}
+            />
+        )
+    })
     
-
-
     return (
         <div>
             <div className="content-box">
