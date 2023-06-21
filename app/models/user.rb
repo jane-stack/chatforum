@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     
-    has_many :topics
+    has_many :topics, dependent: :destroy
     has_many :chats, through: :topics
 
     validates :username, uniqueness: true, presence: true

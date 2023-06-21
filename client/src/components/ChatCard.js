@@ -1,18 +1,15 @@
 import { useContext } from "react";
-// import { TopicContext } from "../context/TopicContext";
 import { UserContext } from "../context/UserContext";
 
 function ChatCard({ chat }) {
     const { user } = useContext(UserContext);
-    // const { topics } = useContext(TopicContext);
-    // const id = topics.find(topic => topic.id === id);
 
     // const commentDeleteClick = () => {
-    //     fetch(`/topics/${id}/comments/${chat.id}`, {
+    //     fetch(`/topics/${topic.id}/comments/${chat.id}`, {
     //         method: "DELETE",
     //     })
     //     .then(resp => resp.json())
-    //     .then(data => deleteComment(data))
+    //     .then(deleteComment(chat.id))
     // }
 
     return (
@@ -22,7 +19,7 @@ function ChatCard({ chat }) {
             </ul>
             {user && user.username === chat.user.username && (
                 <div className="chat-btn">
-                <button className="delete-btn" onClick={() => console.log("CLICKED")}>Delete</button>
+                <button className="delete-btn" onClick={() => console.log("Clicked!")}>Delete</button>
                 <button className="edit-btn" onClick={() => console.log("CLICKED")}>Edit</button>
                 </div>
             )}

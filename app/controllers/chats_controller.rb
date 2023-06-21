@@ -9,10 +9,11 @@ class ChatsController < ApplicationController
 
     def index
         @topic = Topic.find(params[:topic_id])
-        @chat = @post.chats
+        @chat = @topic.chats
         render json: @chat
     end
 
+    # POST /topics/:id/chats
     def create
         @chat = @topic.chats.create(chat_params)
         @chat.user = current_user
