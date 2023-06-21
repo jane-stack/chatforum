@@ -1,28 +1,41 @@
-// import { useContext, useState } from "react";
-// import { ErrorsContext } from "../context/ErrorsContext";
-// import { UserContext } from "../context/UserContext";
-// import { useHistory } from "react-router-dom";
+import { useContext, useState } from "react";
+import { ErrorsContext } from "../context/ErrorsContext";
+import { TopicContext } from "../context/TopicContext";
+import { useParams } from "react-router-dom";
 
-function ChatForm() {
-    // const { setErrors } = useContext(ErrorsContext);
-    // const { loggedIn } = useContext(UserContext);
-    // const navigate = useHistory();
-    // const [content, setContent] = useState("");
+function ChatForm({ addComment }) {
+    const { setErrors } = useContext(ErrorsContext);
+    const { topics } = useContext(TopicContext);
+    const id = parseInt(useParams().id);
+    const topic = topics.find(topic => topic.id === id);
+    const [content, setContent] = useState("");
 
-    // useEffect(() => {
-    //     if (!loggedIn) {
-    //         navigate.push('/')
-    //     } else {
-    //         return (
-    //             setErrors([])
-    //         )
-    //     }
-    // }, [loggedIn, navigate, setErrors])
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newComment = {
+            content: content
+        }
+        fetch(`/topics/${topic.id}/chats`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newComment)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.errors) {
+                setErrors(data.errors)
+            } else {
+                addComment(data)
+            }
+        })
+    }
 
     return (
-        <form className="post-form">
+        <form className="post-form" onSubmit={handleSubmit}>
             <div className="new-post">
-            <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." /><br/>
+            <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." value={content} onChange={(e) => setContent(e.target.value)} /><br/>
             <button type="submit">SEND</button>
             </div>
         </form>

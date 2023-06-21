@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext, useState } from "react";
 import { TopicContext } from "../context/TopicContext";
 import { useParams } from "react-router-dom";
 import ChatCard from "../components/ChatCard";
@@ -6,15 +6,22 @@ import ChatForm from "../forms/ChatForm";
 
 function Content() {
     const { topics } = useContext(TopicContext);
-    // const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([]);
     const id = parseInt(useParams().id);
     const topic = topics.find(topic => topic.id === id);
     const chats = topic.chats.map(chat => <ChatCard key={chat.id} chat={chat} />)
 
     // handle add new comments into chats
-    // const addComment = (newComment) => {
-    //     setComments([...comments, newComment]);
+    const addComment = (newComment) => {
+        setComments([...comments, newComment]);
+    }
+
+    // // handle delete comments
+    // const deleteComment = (id) => {
+    //     const updatedCommentList = comments.filter(comment => comment.id !== id);
+    //     setComments(updatedCommentList);
     // }
+
 
     return (
         <div>
@@ -30,7 +37,7 @@ function Content() {
                 { chats }
             </ul>
             </div>
-            <ChatForm />
+            <ChatForm addComment={addComment} />
         </div>
     )
 }
