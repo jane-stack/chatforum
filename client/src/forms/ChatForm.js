@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { ErrorsContext } from "../context/ErrorsContext";
+import Errors from "../errors/Errors";
 
 function ChatForm({ topic, addComment }) {
     const { setErrors } = useContext(ErrorsContext);
@@ -31,6 +32,7 @@ function ChatForm({ topic, addComment }) {
             <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." value={content} onChange={(e) => setContent(e.target.value)} /><br/>
             <button type="submit">SEND</button>
             </div>
+            <Errors/>
         </form>
     )
 }
