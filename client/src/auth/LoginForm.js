@@ -19,7 +19,7 @@ function LoginForm() {
                 setErrors([])
             )
         }
-    }, [ loggedIn, navigate, setErrors ])
+    }, [loggedIn, navigate, setErrors])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,12 +34,12 @@ function LoginForm() {
         .then(data => {
             if (data.errors) {
                 setErrors(data.errors);
+                setUsername("");
+                setPassword("");
             } else {
                 login(data);
                 setErrors([]);
                 navigate.push("/home")
-                setUsername("");
-                setPassword("");
             }
         })
     }
