@@ -1,6 +1,8 @@
 import { useState } from "react";
+// import { ErrorsContext } from "../context/ErrorsContext";
 
 function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
+    // const { setErrors } = useContext(ErrorsContext);
     const [content, setContent] = useState(chat.content);
 
     const handleSubmit = (e) => {
@@ -10,14 +12,15 @@ function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
         }
         fetch(`/topics/${topic.id}/chats/${chat.id}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Accept": "application/json",
+                "Content-Type": "application/json" 
+            },
             body: JSON.stringify(editComment)
         })
         .then(resp => resp.json())
-        .then(data => {
-            editChat(data)
-            setEditMode(!editMode);
-        })
+        .then(editChat(editComment))
+        setEditMode(!editMode)
     }
 
     return (
