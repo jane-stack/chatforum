@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TopicContext } from "../context/TopicContext";
 import { useParams } from "react-router-dom";
 import ChatCard from "../components/ChatCard";
-// import ChatForm from "../forms/ChatForm";
+import ChatForm from "../forms/ChatForm";
 
 function Content() {
     const { topics } = useContext(TopicContext);
@@ -14,7 +14,7 @@ function Content() {
     useEffect(() => {
         fetch(`/topics/${topic.id}/chats`)
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => setChats(data))
     }, [topic.id])
 
     // renders the comments for each topic
@@ -28,9 +28,9 @@ function Content() {
     })
     
     // handle add new comments into chats
-    // const addComment = (newComment) => {
-    //     setComments([...comments, newComment]);
-    // }
+    const addComment = (newComment) => {
+        setChats([...chats, newComment]);
+    }
     
     // handle delete comments
     // const deleteComment = (id) => {
@@ -54,7 +54,7 @@ function Content() {
                 { renderChats }
             </ul>
             </div>
-            {/* <ChatForm /> */}
+            <ChatForm addComment={addComment} topic={topic} />
         </div>
     )
 }
