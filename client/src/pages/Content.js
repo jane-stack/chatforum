@@ -29,7 +29,17 @@ function Content() {
     }
 
     // handle edit comments
-    
+    const editChat = (editedChat) => {
+        const updatedChatList = chats.map(chat => {
+            if (editedChat.id === topic.id) {
+                return editedChat
+            } else {
+                return chat;
+            }
+        });
+        setChats(updatedChatList);
+    }
+
 
     // renders the comments for each topic
     const renderChats = chats.map(chat => {
@@ -39,6 +49,7 @@ function Content() {
                 chat={chat}
                 topic={topic}
                 deleteComment={deleteComment}
+                editChat={editChat}
             />
         )
     })

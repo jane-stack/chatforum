@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
-import { ErrorsContext } from "../context/ErrorsContext";
+import { useState } from "react";
 
-function ChatEdit() {
-    const { setErrors } = useContext(ErrorsContext);
+function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
     const [content, setContent] = useState(chat.content);
 
     const handleSubmit = (e) => {
