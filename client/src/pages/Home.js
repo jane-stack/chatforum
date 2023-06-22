@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <div>
-            <h3 className="App">Welcome { user.username }!</h3>
+            <h1 className="App">Welcome { user.username }!</h1>
             <h5>You are visiting Tuyen's phase four ChatSpace project.</h5>
             <div className="home-page">
             <h2>What is ChatSpace?</h2>
@@ -57,6 +57,9 @@ function Home() {
             React hook useContext is used to presist the logged in user object in the front end state.
             </p>
             </div>
+            <br/>
+            <button onClick={() => console.log("Deactivated Account")} className="acct-delete">Delete My Account</button>
+            <br/><br/><br/><br/><br/>
         </div>
     )
 }

@@ -165,3 +165,9 @@ code {
   justify-content: center;
   color: white;
 }
+
+.acct-delete {
+  background: none;
+  border: none;
+  color: red;
+}

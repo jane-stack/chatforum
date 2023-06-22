@@ -34,7 +34,7 @@ function ChatEdit({ chat, topic, editChat, editMode, setEditMode }) {
     return (
         <form className="post-form" onSubmit={handleSubmit}>
             <div className="new-post">
-            <textarea className="chat-textarea" type="text" name="content" placeholder="Write your comment." value={content} onChange={(e) => setContent(e.target.value)} /><br/>
+            <textarea className="chat-textarea" type="text" name="content" value={content} onChange={(e) => setContent(e.target.value)} /><br/>
             <button type="submit">SEND</button>
             </div>
             <Errors />

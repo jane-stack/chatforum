@@ -29,10 +29,10 @@ function Content() {
     }
 
     // handle edit comments
-    const editChat = (editedChat) => {
+    const editChat = (newComment) => {
         const updatedChatList = chats.map(chat => {
-            if (editedChat.id === topic.id) {
-                return editedChat
+            if (chat.id === newComment.id) {
+                return newComment
             } else {
                 return chat;
             }

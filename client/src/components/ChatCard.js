@@ -6,7 +6,7 @@ function ChatCard({ chat, topic, deleteComment, editChat }) {
     const { user } = useContext(UserContext);
     const { id } = chat;
     const [editMode, setEditMode] = useState(false);
-    const openEditMode = () => setEditMode(editMode => !editMode);
+    // const openEditMode = () => setEditMode(editMode => !editMode);
 
     const deleteClick = () => {
         fetch(`/topics/${topic.id}/chats/${id}`, {
@@ -23,7 +23,7 @@ function ChatCard({ chat, topic, deleteComment, editChat }) {
             {user && user.username === chat.user.username && (
                 <div className="chat-btn">
                 <button className="delete-btn" onClick={deleteClick}>Delete</button>
-                <button className="edit-btn" onClick={openEditMode}>Edit</button>
+                <button className="edit-btn" onClick={() => setEditMode(editMode => !editMode)}>Edit</button>
                 </div>
             )}
             { editMode && <ChatEdit chat={chat} topic={topic} editChat={editChat} editMode={editMode} setEditMode={setEditMode} /> }
