@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 
 function Home() {
@@ -58,7 +58,7 @@ function Home() {
             </p>
             </div>
             <br/>
-            <button onClick={() => console.log("Deactivated Account")} className="acct-delete">Delete My Account</button>
+            <button onClick={() => console.log(user.username,"Account Deactivated")} className="acct-delete">Delete My Account</button>
             <br/><br/><br/><br/><br/>
         </div>
     )
