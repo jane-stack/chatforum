@@ -9,21 +9,6 @@ function Home() {
             <h3 className="App">Welcome { user.username }!</h3>
             <h5>You are visiting Tuyen's phase four ChatSpace project.</h5>
             <div className="home-page">
-            <h2>Requirements:</h2>
-            <p>Ruby Version 2.7.4</p>
-            <p>NodeJS (v16), and npm</p>
-            <p>Postgresql</p>
-            <p>React-Router-Dom@5</p>
-            </div>
-            <br/>
-            <div className="home-page">
-            <h2>Getting Started:</h2>
-            <p>Install Ruby</p>
-            <p>Install NodeJS</p>
-            <p>Install Postgresql</p>
-            </div>
-            <br/>
-            <div className="home-page">
             <h2>What is ChatSpace?</h2>
             <p>
                 This is a chat forum where users can post any questions or topic they want, seeking help or answers. As a user, you can post your topic of discussion and you can reply to another user's topic.
@@ -37,6 +22,21 @@ function Home() {
             <p>
             Click on Create Topic to post a topic of your choice. Once a topic has been published, as the creator of the topic, you have the option to edit or delete your topic. The edit and delete buttons will only appear to the topic creator. No other users will see the edit and delete button on your post.
             </p>
+            </div>
+            <br/>
+            <div className="home-page">
+            <h2>Requirements:</h2>
+            <p>Ruby Version 2.7.4</p>
+            <p>NodeJS (v16), and npm</p>
+            <p>Postgresql</p>
+            <p>React-Router-Dom@5</p>
+            </div>
+            <br/>
+            <div className="home-page">
+            <h2>Getting Started:</h2>
+            <p>Install Ruby</p>
+            <p>Install NodeJS</p>
+            <p>Install Postgresql</p>
             </div>
             <br/>
             <div className="home-page">
