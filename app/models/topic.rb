@@ -5,4 +5,5 @@ class Topic < ApplicationRecord
     # has_many :creators, through: :chats, class_name: "User", foreign_key: "user_id"
 
     validates :name, :description, presence: true
+
 end

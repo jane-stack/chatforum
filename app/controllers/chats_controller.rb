@@ -1,9 +1,12 @@
 class ChatsController < ApplicationController
     before_action :find_topic
+    before_action :find_chat, only: [:update, :destroy]
     skip_before_action :authorize, only: [:index]
+    before_action only: [:update, :destroy] do
+        authorize_user_resource(@chat.user_id)
+    end
 
     def index
-        @topic = Topic.find(params[:topic_id])
         @chat = @topic.chats
         render json: @chat
     end
@@ -20,14 +23,12 @@ class ChatsController < ApplicationController
     end
 
     def update
-        @chat = @topic.chats.find(params[:id])
         @chat.update(chat_params)
         render json: @chat
     end
 
     # DESTROY /topics/:id/chats/:id
     def destroy
-        @chat = @topic.chats.find(params[:id])
         @chat.destroy
         render json: @chat
     end
@@ -40,6 +41,10 @@ class ChatsController < ApplicationController
     
     def find_topic
         @topic = Topic.find(params[:topic_id])
+    end
+
+    def find_chat
+        @chat = @topic.chats.find(params[:id])
     end
 
 end
